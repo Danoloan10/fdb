@@ -10,6 +10,18 @@ fdb structures data in a tree (just as the tree-structured filesystem) based on 
 
 As it is apparent, in the file system *banks* are represented by *directories* and *registries* by *files*.
 Therefore, the underlying filesystem must have both to be able to support a database following this model.
+
+## fdb library
+The fdb interface is defined in the file `fdb.h`. It provides functions to manage banks and registries as expected,
+which are all described in the file.
+
+To access and modify the data in registries, the implementation maps them to memory to allow easy,
+thread-safe cache implementations, delegating cache management and policies to the operating system.
+
+The path of the root bank is `/var/fdb` by default, but can be specified through an environment variable.
+By default, fdb will use the variable `FDB_ROOT`, but this can be changed passing a non-null
+string to `fdb_init` with the name of the environment variable where to read the path of the root from.
+
 ### Usage example
 ```
 fsh_bank bank, fdb_reg reg;
@@ -19,6 +31,9 @@ char *reg_name  = "reg_name";
 
 struct data reg_data;
 
+fdb_init("EXAMPLE_ROOT"); // read root path from $EXAMPLE_ROOT
+
+// create bank in the root bank
 if (fdb_bank_create (FDB_ROOT, bank_name, &bank) != -1) {
     if (fdb_bank_getreg (bank, reg_name, &reg) == 0) {
         // if the regisry exists, read its data
@@ -41,13 +56,6 @@ if (fdb_bank_create (FDB_ROOT, bank_name, &bank) != -1) {
     perror("bank_create");
 }
 ```
-
-## fdb library
-The fdb interface is defined in the file `fdb.h`. It provides functions to manage banks and registries as expected,
-which are all described in the file.
-
-To access and modify the data in registries, the implementation maps them to memory to allow easy,
-thread-safe cache implementations, delegating cache management and policies to the operating system.
 
 ### Building fdb
 Use the `all` target of the makefile to generate the library `libfdb.a`. Use the `install` target
