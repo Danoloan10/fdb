@@ -49,7 +49,7 @@ which are all described in the file.
 To access and modify the data in registries, the implementation maps them to memory to allow easy,
 thread-safe cache implementations, delegating cache management and policies to the operating system.
 
-# Building fdb
+## Building fdb
 Use the `all` target of the makefile to generate the library `libfdb.a`. Use the `install` target
 to copy the library and headers in `/usr`.
 ```
