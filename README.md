@@ -1,7 +1,7 @@
 # fdb - filesystem database
 fdb provides a simle model for creating databases, as well as an thread safe and POSIX compliant interface implementing such model, all using an underlying tree-structured file system.
 
-# fdb database model
+## fdb database model
 fdb structures data in a tree (just as the tree-structured filesystem) based on two main concepts:
 
 - **root**: bank not in a bank (the root of the tree).
@@ -10,7 +10,7 @@ fdb structures data in a tree (just as the tree-structured filesystem) based on 
 
 As it is apparent, in the file system *banks* are represented by *directories* and *registries* by *files*.
 Therefore, the underlying filesystem must have both to be able to support a database following this model.
-## Usage example
+### Usage example
 ```
 fsh_bank bank, fdb_reg reg;
 
@@ -42,14 +42,14 @@ if (fdb_bank_create (FDB_ROOT, bank_name, &bank) != -1) {
 }
 ```
 
-# fdb library
+## fdb library
 The fdb interface is defined in the file `fdb.h`. It provides functions to manage banks and registries as expected,
 which are all described in the file.
 
 To access and modify the data in registries, the implementation maps them to memory to allow easy,
 thread-safe cache implementations, delegating cache management and policies to the operating system.
 
-## Building fdb
+### Building fdb
 Use the `all` target of the makefile to generate the library `libfdb.a`. Use the `install` target
 to copy the library and headers in `/usr`.
 ```
