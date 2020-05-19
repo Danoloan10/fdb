@@ -2,7 +2,7 @@
 fdb provides a simle model for creating databases, as well as an thread safe and POSIX compliant interface implementing such model, all using an underlying tree-structured file system.
 
 ## fdb database model
-fdb structures data in a tree (just as the tree-structured filesystem) based on two main concepts:
+fdb structures data in a tree (just as the tree-structured filesystem) based on the following main concepts:
 
 - **root**: bank not in a bank (the root of the tree).
 - **bank**: collection of banks identified by a string and the bank or root it is in (middle node in the tree).
