@@ -1,5 +1,5 @@
 # fdb - filesystem database
-fdb provides a simle model for creating databases, as well as an thread safe and POSIX compliant interface implementing such model, all using an underlying tree-structured file system.
+fdb provides a simple model for creating databases, as well as an thread safe and POSIX compliant interface implementing such model, all using an underlying tree-structured file system.
 
 ## fdb database model
 fdb structures data in a tree (just as the tree-structured filesystem) based on the following main concepts:
